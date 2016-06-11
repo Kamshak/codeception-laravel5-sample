@@ -3,7 +3,7 @@
 set -e
 
 # If AFTER_CWD is set, change into that directory
-: "${AFTER_CWD:?.}"
+AFTER_CWD=${AFTER_CWD:-.}
 cd $AFTER_CWD
 
 sudo -u vagrant -H bash -c "composer install -n --prefer-dist; \
