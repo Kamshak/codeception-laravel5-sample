@@ -12,4 +12,8 @@ if [ ! -f ~/.key_generated ]; then
   php artisan key:generate;
   touch ~/.key_generated;
 fi;
-php artisan migrate
+
+if [ "$DB_DATABASE" != ""]
+then
+  php artisan migrate
+fi
