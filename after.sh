@@ -6,13 +6,13 @@ set -e
 AFTER_CWD=${AFTER_CWD:-.}
 cd $AFTER_CWD
 
+cp .env.acceptance .env
 composer install -n --prefer-dist
-if [ ! -f ~/.key_generated ]; then 
+if [ ! -f ~/.key_generated ]; then
   php artisan key:generate;
   touch ~/.key_generated;
 fi;
 touch storage/database.sqlite
 touch storage/testing.sqlite
-cp .env.acceptance .env
 php artisan migrate
 php artisan migrate --database=sqlite_testing
