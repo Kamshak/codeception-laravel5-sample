@@ -9,7 +9,7 @@ commit:
       code: |
         bash after.sh
     - script:
-      name: Run Unit tests
+      name: Run unit tests
       code: |
         ./vendor/bin/codecept run unit
 
