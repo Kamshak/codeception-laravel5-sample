@@ -6,13 +6,14 @@ class CustomValidationCest
     {
         $I->amOnPage('');
         $I->haveRecord('posts', [
+            'id' => 1,
             'title' => 'Hello Universe',
             'body' => 'You are so awesome',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime()
         ]);
     }
-    
+
     public function testCustomValidationSuccess(FunctionalTester $I)
     {
         $I->amOnPage('validation?postal_code=1234AB&post_id=1');

@@ -13,6 +13,8 @@ class UserTest extends \Codeception\TestCase\Test
 
     public function testRegister()
     {
+        Artisan::call('migrate'); // Set up In-Memory Database
+
         $email = 'johndoe@example.com';
         $password = Hash::make('password');
 
@@ -20,5 +22,4 @@ class UserTest extends \Codeception\TestCase\Test
 
         $this->tester->seeRecord('users', ['email' => $email, 'password' => $password]);
     }
-
 }

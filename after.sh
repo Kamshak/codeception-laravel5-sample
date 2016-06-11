@@ -4,10 +4,10 @@ set -e
 
 cd code
 
-sudo -u vagrant -H bash -c "cp .env.testing .env; \
-  composer install -n --prefer-dist; \
+sudo -u vagrant -H bash -c "composer install -n --prefer-dist; \
   if [ ! -f ~/.key_generated ]; then php artisan key:generate; touch ~/.key_generated; fi; \
   touch storage/database.sqlite; \
   touch storage/testing.sqlite; \
+  cp .env.acceptance .env; \
   php artisan migrate; \
   php artisan migrate --database=sqlite_testing;"

@@ -4,4 +4,4 @@ modules:
         - Helper\Functional
         - Asserts
         - Laravel5:
-            environment_file: .env.testing
+            environment_file: .env.acceptance

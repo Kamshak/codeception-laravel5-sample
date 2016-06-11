@@ -1,0 +1,35 @@
+box: geshan/laravel-alpine
+commit:
+  # Steps make up the actions in your pipeline
+  # Read more about steps on our dev center:
+  # http://devcenter.wercker.com/docs/steps/index.html
+  steps:
+    - script:
+      name: Perform Setup via after.sh
+      code: |
+        bash after.sh
+    - script:
+      name: Run Unit tests
+      code: |
+        ./vendor/bin/codecept run unit
+
+acceptance:
+  services:
+    - wercker/mongodb
+  steps:
+    - script:
+      name: Perform setup via after.sh
+      code: |
+        bash after.sh
+    - script:
+      name: Set up testing environment
+      code: |
+        export DB_HOST=$WERCKER_MYSQL_HOST
+        export DB_DATABASE=$WERCKER_MYSQL_DATABASE
+        export DB_PASSWORD=$WERCKER_MYSQL_PASSWORD
+        export DB_USERNAME=$WERCKER_MYSQL_USERNAME
+        export DB_PORT=$WERCKER_MYSQL_PORT
+    - script:
+      name: Run Acceptance Tests
+      code: |
+        ./vendor/bin/codecept run functional
