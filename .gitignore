@@ -11,3 +11,6 @@
 .idea
 .vagrant
 composer.lock
+.key_generated
+.cache
+.composer

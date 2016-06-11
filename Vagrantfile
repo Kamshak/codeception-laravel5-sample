@@ -23,6 +23,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     if File.exists? afterScriptPath then
-        config.vm.provision "shell", path: afterScriptPath
+        config.vm.provision "shell", path: afterScriptPath, env: {"AFTER_CWD" => "code"}
     end
 end
